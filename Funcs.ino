@@ -32,10 +32,10 @@ float verifica_valor()
   float ret = 0.0;
   
   // Moedeiro
-  verifica_valor_moedeiro(&ret);
+  //verifica_valor_moedeiro(&ret);
   
   // Noteiro
-  verifica_valor_noteiro(&ret);
+  //verifica_valor_noteiro(&ret);
   
   // Gravando o relatorio na EEPROM
   EEPROM_writeAnything(200, report);

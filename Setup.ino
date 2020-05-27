@@ -1,23 +1,35 @@
 void _setup() {
+
+  // Configurando interrupções dos sinais
+  pinMode(MOEDEIRO_SINAL, INPUT_PULLUP);
+  attachInterrupt(digitalPinToInterrupt(MOEDEIRO_SINAL), moedeiro_int, CHANGE);
+  pinMode(NOTEIRO_SINAL, INPUT_PULLUP);
+  attachInterrupt(digitalPinToInterrupt(NOTEIRO_SINAL), noteiro_int, CHANGE);
+
   // Configurando Display
   lcd.begin(16, 2);
   limpa_display(0);
   limpa_display(1);
   lcd.setCursor(0, 0);
   lcd.print("INICIANDO...");
+
+  
   // Configurando portas dos botoes
   for (int i = 0; i < 6; i++)
   {
     pinMode(botaoMaquinas[i], INPUT);
     digitalWrite(botaoMaquinas[i], HIGH);
   }
+
+  // Serial DESLIGADA!
   // Configurando porta do RX
-  pinMode(RXPIN, INPUT);
-  digitalWrite(RXPIN, HIGH);
+  pinMode(LCD_D6_CONFIG, INPUT);
+  digitalWrite(LCD_D6_CONFIG, HIGH);
+  // Iniciando Serial 
+  // Serial.begin(9600);
+
   // Configurando o Acumulador
   Acumulador = 0;
-  // Iniciando Serial 
-  Serial.begin(9600);
   
   
   // Esperando 5 segundos
@@ -34,7 +46,7 @@ void _setup() {
   // Carregando configuracoes
   configLoad();
   // Verificando jumper de configuracao
-  if (!digitalRead(RXPIN))
+  if (!digitalRead(LCD_D6_CONFIG))
   {
     jumperMenu();
     return;

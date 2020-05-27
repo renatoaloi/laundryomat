@@ -3,13 +3,15 @@
 #include <EEPROM.h>
 #include "EEPROMAnything.h"
 
-#define PRINCIPAL 1
-#define LIGANDO   2
-#define PARCIAL   3
-#define CONFIRMA  4
-#define ERRO      99
-#define DEBUG     1
-#define RXPIN     0
+#define PRINCIPAL       1
+#define LIGANDO         2
+#define PARCIAL         3
+#define CONFIRMA        4
+#define ERRO            99
+#define LCD_D7          1
+#define LCD_D6_CONFIG   0
+#define MOEDEIRO_SINAL  2
+#define NOTEIRO_SINAL   3
 
 struct config_t
 {
@@ -55,7 +57,7 @@ struct report_t
   unsigned long nota100;
 } report;
 
-LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+LiquidCrystal lcd(12, 11, 5, 4, LCD_D6_CONFIG, LCD_D7);
 
 byte bufferMoedeiro[6];
 byte bufferNoteiro[3];
