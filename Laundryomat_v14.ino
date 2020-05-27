@@ -61,7 +61,7 @@ LiquidCrystal lcd(12, 11, 5, 4, LCD_D6_CONFIG, LCD_D7);
 
 byte bufferMoedeiro[6];
 byte bufferNoteiro[3];
-float Acumulador;
+volatile float Acumulador;
 byte modo_debug = 0;
 
 //------------------------------------------------------------
