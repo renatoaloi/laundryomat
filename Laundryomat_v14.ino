@@ -43,18 +43,8 @@ struct report_t
   unsigned long maq4;
   unsigned long maq5;
   unsigned long maq6;
-  unsigned long moeda10o;
-  unsigned long moeda10n;
-  unsigned long moeda25;
-  unsigned long moeda50o;
-  unsigned long moeda50n;
-  unsigned long moeda1;
-  unsigned long nota2;
-  unsigned long nota5;
-  unsigned long nota10;
-  unsigned long nota20;
-  unsigned long nota50;
-  unsigned long nota100;
+  unsigned long total_moedas;
+  unsigned long total_notas;
 } report;
 
 LiquidCrystal lcd(12, 11, 5, 4, LCD_D6_CONFIG, LCD_D7);
