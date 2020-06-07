@@ -12,7 +12,6 @@ void _setup() {
   limpa_display(1);
   lcd.setCursor(0, 0);
   lcd.print("INICIANDO...");
-
   
   // Configurando portas dos botoes
   for (int i = 0; i < 6; i++)
@@ -30,7 +29,15 @@ void _setup() {
 
   // Configurando o Acumulador
   Acumulador = 0;
-  
+
+  // Configurando o parcial
+  Parcial = 0;
+
+  // Flag pra sinalizar captura de pagamento
+  Capturando = false;
+
+  // Temporizador de atualização da captura de pagamento
+  update_tick();
   
   // Esperando 5 segundos
   delay(5000);
