@@ -2,9 +2,9 @@ void _setup() {
 
   // Configurando interrupções dos sinais
   pinMode(MOEDEIRO_SINAL, INPUT_PULLUP);
-  attachInterrupt(digitalPinToInterrupt(MOEDEIRO_SINAL), moedeiro_int, CHANGE);
+  attachInterrupt(digitalPinToInterrupt(MOEDEIRO_SINAL), moedeiro_int, FALLING);
   pinMode(NOTEIRO_SINAL, INPUT_PULLUP);
-  attachInterrupt(digitalPinToInterrupt(NOTEIRO_SINAL), noteiro_int, CHANGE);
+  attachInterrupt(digitalPinToInterrupt(NOTEIRO_SINAL), noteiro_int, FALLING);
 
   // Configurando Display
   lcd.begin(16, 2);
@@ -44,13 +44,13 @@ void _setup() {
   // Carregando valores do relatorio
   reportLoad();
   // Carregando configuracoes
-  configLoad();
+  //configLoad();
   // Verificando jumper de configuracao
-  if (!digitalRead(LCD_D6_CONFIG))
-  {
-    jumperMenu();
-    return;
-  }
+  //if (!digitalRead(LCD_D6_CONFIG))
+  //{
+    //jumperMenu();
+    //return;
+  //}
   
   // Tudo iniciado, montando tela principal
   monta_tela(PRINCIPAL, 0.0);

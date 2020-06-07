@@ -1,7 +1,7 @@
 // interrupção do noteiro
 void noteiro_int() {
-    Acumulador += 1.00f;
-    monta_tela(PARCIAL, 1.00f);
+    Acumulador += 1.0;
+    monta_tela(PARCIAL, 1.0);
 
     // adicionando uma nota no relatorio
     report.total_notas++;

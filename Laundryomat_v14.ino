@@ -59,34 +59,34 @@ byte modo_debug = 0;
 // para liberar o acionamento das maquinas
 //float ValorCredito = 3.00;
 //                       Maq1, Maq2, Maq3, Maq4, Maq5, Maq6
-float valorCredito[6]; // = { 3.00, 3.00, 3.00, 3.00, 3.00, 3.00 };
+float valorCredito[6] = { 7.00, 7.00, 7.00, 7.00, 7.00, 7.00 };
 //------------------------------------------------------------
 // Configurar aqui a duracao do pulso
 // de acionamento da maquina (em ms)
-int   DuracaoPulso; // = 600; // ms
+int   DuracaoPulso = 100; // ms
 //------------------------------------------------------------
 // Configurar aqui a quantidade de pulsos
 // de credito da maquina
 //int   QtdePulsos = 4;
 //                  Maq1, Maq2, Maq3, Maq4, Maq5, Maq6
-int qtdePulsos[6]; // = { 4,    4,    4,    4,    4,    4 };
+int qtdePulsos[6] = { 1,    1,    1,    1,    1,    1 };
 //------------------------------------------------------------
 // Configurar aqui o tempo de exibicao 
 // do erro de credito incompleto
-int   TempoExibirErro; // = 2000; // ms
+int   TempoExibirErro = 2000; // ms
 //------------------------------------------------------------
 
-char strAcumulado[7]  = "TOTAL:";
-char strCifrao[3]     = "R$";
-char strParcial[9]    = "PARCIAL:";
-char strLigando[9]    = "LIGANDO ";
-String strConfirma   = "CONFIRMA ";
-String strInterrog   = "?";
+char strAcumulado[7]   = "TOTAL:";
+char strCifrao[3]      = "R$";
+char strParcial[9]     = "PARCIAL:";
+char strLigando[9]     = "LIGANDO ";
+String strConfirma     = "CONFIRMA ";
+String strInterrog     = "?";
 char strInsira[16]     = "INSIRA VALOR...";
 char strErroLinha1[13] = "NAO ATINGIU ";
 char strErroLinha2[17] = "VALOR: "; // DE CREDITO";
-String strMaquinas[] = { "LAV. 1", "LAV. 2", "LAV. 3",
-                         "SEC. 1", "SEC. 2", "SEC. 3" };
+String strMaquinas[]   = { "LAV. 1", "LAV. 2", "LAV. 3",
+                           "SEC. 1", "SEC. 2", "SEC. 3" };
 
 byte portaMaquinas[] = { 14, 15, 16, 17, 18, 19 };
 byte botaoMaquinas[] = { 13, 10,  9,  8,  7,  6 };
