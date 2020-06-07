@@ -51,13 +51,13 @@ void _setup() {
   // Carregando valores do relatorio
   reportLoad();
   // Carregando configuracoes
-  //configLoad();
+  configLoad();
   // Verificando jumper de configuracao
-  //if (!digitalRead(LCD_D6_CONFIG))
-  //{
-    //jumperMenu();
-    //return;
-  //}
+  if (digitalRead(LCD_D6_CONFIG))
+  {
+    jumperMenu();
+    return;
+  }
   
   // Tudo iniciado, montando tela principal
   monta_tela(PRINCIPAL, 0.0);
