@@ -11,7 +11,7 @@ int fatorDuracao;
 void configLoad()
 {
   // Leitura da configuracao
-  EEPROM_readAnything(100, configuration);
+  EEPROM_readAnything(EEPROM_ADDR_2, configuration);
   
   // Verifica se ja existe valor gravado
   if (configuration.isNull) // || temp)
@@ -19,24 +19,24 @@ void configLoad()
     //temp = 0;
     // Caso nao exista, cria uma padrao
     configuration.isNull = 0;
-    configuration.valor1 = 3.00;
-    configuration.valor2 = 3.00;
-    configuration.valor3 = 3.00;
-    configuration.valor4 = 3.00;
-    configuration.valor5 = 3.00;
-    configuration.valor6 = 3.00;
-    configuration.pulsos1 = 4;
-    configuration.pulsos2 = 4;
-    configuration.pulsos3 = 4;
-    configuration.pulsos4 = 4;
-    configuration.pulsos5 = 4;
-    configuration.pulsos6 = 4;
+    configuration.valor1 = 7.00;
+    configuration.valor2 = 7.00;
+    configuration.valor3 = 7.00;
+    configuration.valor4 = 7.00;
+    configuration.valor5 = 7.00;
+    configuration.valor6 = 7.00;
+    configuration.pulsos1 = 1;
+    configuration.pulsos2 = 1;
+    configuration.pulsos3 = 1;
+    configuration.pulsos4 = 1;
+    configuration.pulsos5 = 1;
+    configuration.pulsos6 = 1;
     configuration.tempo = 2000;
     configuration.duracao = 600;
     configuration.fatorValor = 5;
     configuration.fatorDuracao = 2;
     // Grava valores padrao na EEPROM
-    EEPROM_writeAnything(100, configuration);
+    EEPROM_writeAnything(EEPROM_ADDR_2, configuration);
   }
   
   // Carrega os valores nas variaveis globais
@@ -170,7 +170,7 @@ void configSetup()
       else if (idxMenuCfg == 16)
       {
         // Salvar EEPROM
-        EEPROM_writeAnything(100, configuration);
+        EEPROM_writeAnything(EEPROM_ADDR_2, configuration);
         lcd.setCursor(0, 1);
         lcd.print("OK");
       }

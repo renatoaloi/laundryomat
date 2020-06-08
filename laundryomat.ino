@@ -12,6 +12,8 @@
 #define LCD_D6_CONFIG   0
 #define MOEDEIRO_SINAL  2
 #define NOTEIRO_SINAL   3
+#define EEPROM_ADDR_1   300
+#define EEPROM_ADDR_2   400
 
 struct config_t
 {
@@ -62,21 +64,21 @@ byte modo_debug = 0;
 // para liberar o acionamento das maquinas
 //float ValorCredito = 3.00;
 //                       Maq1, Maq2, Maq3, Maq4, Maq5, Maq6
-float valorCredito[6] = { 7.00, 7.00, 7.00, 7.00, 7.00, 7.00 };
+float valorCredito[6]; // = { 7.00, 7.00, 7.00, 7.00, 7.00, 7.00 };
 //------------------------------------------------------------
 // Configurar aqui a duracao do pulso
 // de acionamento da maquina (em ms)
-int   DuracaoPulso = 100; // ms
+int   DuracaoPulso; // = 100; // ms
 //------------------------------------------------------------
 // Configurar aqui a quantidade de pulsos
 // de credito da maquina
 //int   QtdePulsos = 4;
 //                  Maq1, Maq2, Maq3, Maq4, Maq5, Maq6
-int qtdePulsos[6] = { 1,    1,    1,    1,    1,    1 };
+int qtdePulsos[6]; // = { 1,    1,    1,    1,    1,    1 };
 //------------------------------------------------------------
 // Configurar aqui o tempo de exibicao 
 // do erro de credito incompleto
-int   TempoExibirErro = 2000; // ms
+int   TempoExibirErro; // = 2000; // ms
 //------------------------------------------------------------
 
 char strAcumulado[7]   = "TOTAL:";

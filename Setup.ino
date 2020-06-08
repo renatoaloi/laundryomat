@@ -53,8 +53,11 @@ void _setup() {
   // Carregando configuracoes
   configLoad();
   // Verificando jumper de configuracao
-  if (digitalRead(LCD_D6_CONFIG))
+  if (!digitalRead(LCD_D6_CONFIG))
   {
+    delay(5000);
+    //  lcd(12, 11, 5, 4, LCD_D6_CONFIG, LCD_D7);
+    lcd.init(1, 12, 255, 11, 5, 4, LCD_D6_CONFIG, LCD_D7, 0, 0, 0, 0);
     jumperMenu();
     return;
   }

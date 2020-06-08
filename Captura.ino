@@ -50,7 +50,7 @@ void captura_check() {
       atualiza_parcial();
       
       // Gravando o relatorio na EEPROM
-      EEPROM_writeAnything(200, report);
+      EEPROM_writeAnything(EEPROM_ADDR_1, report);
     }
     update_tick();
   }

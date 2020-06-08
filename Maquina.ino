@@ -15,5 +15,5 @@ void aciona_maquina(int i)
   monta_tela(PRINCIPAL, 0.0);
   
   // Gravando o relatorio na EEPROM
-  EEPROM_writeAnything(200, report);
+  EEPROM_writeAnything(EEPROM_ADDR_1, report);
 }

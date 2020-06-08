@@ -79,7 +79,7 @@ void checkAcc() {
           limpa_display(1);
           lcd.setCursor(0, 1);
           lcd.print("OK");
-          EEPROM_writeAnything(200, report);
+          EEPROM_writeAnything(EEPROM_ADDR_1, report);
           delay(TempoExibirErro);
         }
         

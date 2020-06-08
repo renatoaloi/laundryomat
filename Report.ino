@@ -5,7 +5,7 @@ byte idxMenuReport = 0;
 void reportLoad()
 {
   // Leitura da configuracao
-  EEPROM_readAnything(200, report);
+  EEPROM_readAnything(EEPROM_ADDR_1, report);
   
   // Verifica se ja existe valor gravado
   if (report.isNull)
@@ -19,7 +19,7 @@ void reportLoad()
     report.maq6 = 0;
     report.total_moedas = 0;
     report.total_notas = 0;
-    EEPROM_writeAnything(200, report);
+    EEPROM_writeAnything(EEPROM_ADDR_1, report);
   }
 }
 
@@ -53,7 +53,7 @@ void reportShow()
         report.maq6 = 0;
         report.total_moedas = 0;
         report.total_notas = 0;
-        EEPROM_writeAnything(200, report);
+        EEPROM_writeAnything(EEPROM_ADDR_1, report);
         lcd.setCursor(0, 1);
         lcd.print("OK");
       }
