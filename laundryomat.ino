@@ -14,6 +14,10 @@
 #define NOTEIRO_SINAL   3
 #define EEPROM_ADDR_1   300
 #define EEPROM_ADDR_2   400
+#define TEMPO_CAPTURA   500
+#define TEMPO_NOTEIRO   10
+#define TEMPO_MOEDEIRO  10
+#define TOTAL_SINAIS    3
 
 struct config_t
 {
@@ -53,10 +57,18 @@ LiquidCrystal lcd(12, 11, 5, 4, LCD_D6_CONFIG, LCD_D7);
 
 byte bufferMoedeiro[6];
 byte bufferNoteiro[3];
-volatile float Acumulador;
-volatile float Parcial;
+
 volatile bool Capturando;
+volatile float ValorCaptura;
+
+float Acumulador;
+float Parcial;
+bool HouveCaptura;
+int ContaSinalMoedeiro;
+int ContaSinalNoteiro;
 unsigned long captura_tick;
+unsigned long noteiro_tick;
+unsigned long moedeiro_tick;
 byte modo_debug = 0;
 
 //------------------------------------------------------------

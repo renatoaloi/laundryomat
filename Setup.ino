@@ -29,15 +29,20 @@ void _setup() {
 
   // Configurando o Acumulador
   Acumulador = 0;
+  ValorCaptura = 0;
+  ContaSinalMoedeiro = 0;
+  ContaSinalNoteiro = 0;
 
   // Configurando o parcial
   Parcial = 0;
 
   // Flag pra sinalizar captura de pagamento
   Capturando = false;
+  HouveCaptura = false;
 
   // Temporizador de atualização da captura de pagamento
-  update_tick();
+  for (int i = 1; i <= 3; i++) 
+    update_tick(i);
   
   // Esperando 5 segundos
   delay(5000);
