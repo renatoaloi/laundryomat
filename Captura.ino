@@ -1,13 +1,42 @@
 // interrupção do moedeiro
 void moedeiro_int() {
     // Atualizando acumulador
-    ValorCaptura += 0.25;
+    if (!digitalRead(MOEDEIRO_SINAL)) {
+      m_time_captura_ini = millis();
+      m_entrada = true;
+      Capturando = true;
+      captura_tick = millis() + TEMPO_CAPTURA;
+    } else if (m_entrada) {
+      m_time_captura_fim = millis();
+      m_entrada = false;
+    
+      if (m_time_captura_fim - m_time_captura_ini > 47 
+       && m_time_captura_fim - m_time_captura_ini < 53) {
+        Parcial += 0.25;
+        HouveCapturaMoedeiro = true;
+      }
+    }
 }
+
 
 // interrupção do noteiro
 void noteiro_int() {
     // Atualizando acumulador
-    ValorCaptura += 1.0;
+    if (!digitalRead(NOTEIRO_SINAL)) {
+      n_time_captura_ini = millis();
+      n_entrada = true;
+      Capturando = true;
+      captura_tick = millis() + TEMPO_CAPTURA;
+    } else if (n_entrada) {
+      n_time_captura_fim = millis();
+      n_entrada = false;
+    
+      if (n_time_captura_fim - n_time_captura_ini > 47 
+       && n_time_captura_fim - n_time_captura_ini < 53) {
+        Parcial += 1.0;
+        HouveCapturaNoteiro = true;
+      }
+    }
 }
 
 // atualiza dados parciais do LCD
@@ -25,87 +54,36 @@ void update_tick(int i) {
 
 void captura_check() {
   if (captura_tick < millis()) {
-    // Verificando se tem que atualizar parcial
-    if (Capturando) {
-      // 
-      Capturando = false;
-      HouveCaptura = true;
-      
-      // Atualizando parcial
-      atualiza_parcial();
-      
-      // Gravando o relatorio na EEPROM
-      EEPROM_writeAnything(EEPROM_ADDR_1, report);
-    }
-    else {
-      // Zerando o parcial
-      if (HouveCaptura) {
-        HouveCaptura = false;
-        Parcial = 0;
+    
+    // Atualizando parcial
+    if (!Capturando) {
+      if (HouveCapturaNoteiro || HouveCapturaMoedeiro) {
+
+        Acumulador += Parcial;
+        // atualizando o parcial, dentro do periodo de atualização
+        Parcial = 0.0;
+
+        if (HouveCapturaNoteiro) {
+          // Desliga Capturando e captura
+          HouveCapturaNoteiro = false;
+          // adicionando uma nota no relatorio
+          report.total_notas++;
+        }
+        else {
+          // Desliga Capturando e captura
+          HouveCapturaMoedeiro = false;
+          // adicionando uma moeda no relatorio
+          report.total_moedas++;
+        }
+        
+        EEPROM_writeAnything(EEPROM_ADDR_1, report);
+        atualiza_parcial();
       }
     }
+    else 
+      Capturando = false;
+      
+    
     update_tick(1);
   }
-}
-
-void noteiro_check() {
-
-  if (noteiro_tick < millis())
-  {
-    if (digitalRead(NOTEIRO_SINAL) == LOW) { // tem que ficar em LOW pelo menos por 10ms x 3 pra filtrar ruido
-      // Incrementando contador de sinais
-      ContaSinalNoteiro++;
-    }
-
-    if (ContaSinalNoteiro >= TOTAL_SINAIS)
-    {
-      // Zerando contador de sinais
-      ContaSinalNoteiro = 0;
-      
-      // Capturando pagamento
-      Capturando = true;
-      
-      // Atualizando acumulador
-      Acumulador += ValorCaptura;
-    
-      // atualizando o parcial, dentro do periodo de atualização
-      Parcial += ValorCaptura;
-    
-      // adicionando uma nota no relatorio
-      report.total_notas++;
-    }
-  }
-  
-  update_tick(2);
-}
-
-void moedeiro_check() {
-
-  if (moedeiro_tick < millis()) 
-  {
-    if(digitalRead(MOEDEIRO_SINAL) == LOW) { // tem que ficar em LOW pelo menos por 10ms x 3 pra filtrar ruido
-      // Incrementando contador de sinais
-      ContaSinalMoedeiro++;
-    }
-
-    if (ContaSinalMoedeiro >= TOTAL_SINAIS)
-    {
-      // Zerando contador de sinais
-      ContaSinalMoedeiro = 0;
-      
-      // Capturando pagamento
-      Capturando = true;
-      
-      // Atualizando acumulador
-      Acumulador += ValorCaptura;
-    
-      // atualizando o parcial, dentro do periodo de atualização
-      Parcial += ValorCaptura;
-    
-      // adicionando uma moeda no relatorio
-      report.total_moedas++;
-    }
-  }
-    
-  update_tick(3);
 }

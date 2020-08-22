@@ -5,8 +5,8 @@ void _core() {
 
   // Verificando se tem que atualiza os dados de captura
   captura_check();
-  noteiro_check();
-  moedeiro_check();
+  //noteiro_check();
+  //moedeiro_check();
   
   delay(10);
 }

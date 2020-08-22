@@ -19,10 +19,11 @@ void monta_tela(byte tipo, float valor)
     lcd.print(strCifrao);
     lcd.print(converte_valor(Acumulador));
     lcd.setCursor(0, 1);
-    lcd.print(strParcial);
-    lcd.setCursor(9, 1);
-    lcd.print(strCifrao);
-    lcd.print(converte_valor(valor));
+//    lcd.print(strParcial);
+//    lcd.setCursor(9, 1);
+//    lcd.print(strCifrao);
+//    lcd.print(converte_valor(valor));
+    lcd.print(strInsira);
   }
   else if (tipo == PRINCIPAL)
   {

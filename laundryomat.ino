@@ -59,14 +59,14 @@ byte bufferMoedeiro[6];
 byte bufferNoteiro[3];
 
 volatile bool Capturando;
-volatile float ValorCaptura;
+volatile bool HouveCapturaMoedeiro, HouveCapturaNoteiro;
+
+volatile unsigned long n_time_captura_ini, n_time_captura_fim, m_time_captura_ini, m_time_captura_fim;
+volatile bool n_entrada, m_entrada;
 
 float Acumulador;
 float Parcial;
-bool HouveCaptura;
-int ContaSinalMoedeiro;
-int ContaSinalNoteiro;
-unsigned long captura_tick;
+volatile unsigned long captura_tick;
 unsigned long noteiro_tick;
 unsigned long moedeiro_tick;
 byte modo_debug = 0;

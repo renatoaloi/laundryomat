@@ -2,9 +2,9 @@ void _setup() {
 
   // Configurando interrupções dos sinais
   pinMode(MOEDEIRO_SINAL, INPUT_PULLUP);
-  attachInterrupt(digitalPinToInterrupt(MOEDEIRO_SINAL), moedeiro_int, FALLING);
+  attachInterrupt(digitalPinToInterrupt(MOEDEIRO_SINAL), moedeiro_int, CHANGE);
   pinMode(NOTEIRO_SINAL, INPUT_PULLUP);
-  attachInterrupt(digitalPinToInterrupt(NOTEIRO_SINAL), noteiro_int, FALLING);
+  attachInterrupt(digitalPinToInterrupt(NOTEIRO_SINAL), noteiro_int, CHANGE);
 
   // Configurando Display
   lcd.begin(16, 2);
@@ -29,16 +29,22 @@ void _setup() {
 
   // Configurando o Acumulador
   Acumulador = 0;
-  ValorCaptura = 0;
-  ContaSinalMoedeiro = 0;
-  ContaSinalNoteiro = 0;
 
   // Configurando o parcial
   Parcial = 0;
 
   // Flag pra sinalizar captura de pagamento
   Capturando = false;
-  HouveCaptura = false;
+  HouveCapturaNoteiro = false;
+  HouveCapturaMoedeiro = false;
+
+  m_time_captura_fim = millis();
+  m_time_captura_ini = millis();
+  n_time_captura_fim = millis();
+  n_time_captura_ini = millis();
+
+  m_entrada = false;
+  n_entrada = false;
 
   // Temporizador de atualização da captura de pagamento
   for (int i = 1; i <= 3; i++) 
