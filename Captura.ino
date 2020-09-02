@@ -1,3 +1,7 @@
+bool filtro(unsigned long ini, unsigned long fim, int ms) {
+  return (fim - ini > ms - 3 && fim - ini < ms + 3);
+}
+
 // interrupção do moedeiro
 void moedeiro_int() {
     // Atualizando acumulador
@@ -10,8 +14,8 @@ void moedeiro_int() {
       m_time_captura_fim = millis();
       m_entrada = false;
     
-      if (m_time_captura_fim - m_time_captura_ini > 47 
-       && m_time_captura_fim - m_time_captura_ini < 53) {
+      if (filtro(m_time_captura_ini, m_time_captura_fim, 50)
+          || filtro(m_time_captura_ini, m_time_captura_fim, 100)) {
         Parcial += 0.25;
         HouveCapturaMoedeiro = true;
       }
@@ -31,8 +35,8 @@ void noteiro_int() {
       n_time_captura_fim = millis();
       n_entrada = false;
     
-      if (n_time_captura_fim - n_time_captura_ini > 47 
-       && n_time_captura_fim - n_time_captura_ini < 53) {
+      if (filtro(n_time_captura_ini, n_time_captura_fim, 50)
+          || filtro(n_time_captura_ini, n_time_captura_fim, 100)) {
         Parcial += 1.0;
         HouveCapturaNoteiro = true;
       }
