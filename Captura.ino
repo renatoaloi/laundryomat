@@ -10,16 +10,19 @@ void moedeiro_int() {
       m_entrada = true;
       Capturando = true;
       captura_tick = millis() + TEMPO_CAPTURA;
-    } else if (m_entrada) {
-      m_time_captura_fim = millis();
+    } 
+    else if (m_entrada) {
+      Parcial += 0.50;
+      HouveCapturaMoedeiro = true;
+    }
+      /*m_time_captura_fim = millis();
       m_entrada = false;
     
-      if (filtro(m_time_captura_ini, m_time_captura_fim, 50)
-          || filtro(m_time_captura_ini, m_time_captura_fim, 100)) {
-        Parcial += 0.25;
-        HouveCapturaMoedeiro = true;
+      if (filtro(m_time_captura_ini, m_time_captura_fim, 20)
+          || filtro(m_time_captura_ini, m_time_captura_fim, 250)) {
+        
       }
-    }
+    }*/
 }
 
 
